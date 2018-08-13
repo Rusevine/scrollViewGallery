@@ -16,6 +16,7 @@
 		46D03CC521222C7C00F09E2B /* Lighthouse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46D03CC421222C7C00F09E2B /* Lighthouse.jpg */; };
 		46D03CC721222C8F00F09E2B /* Lighthouse-in-Field.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46D03CC621222C8F00F09E2B /* Lighthouse-in-Field.jpg */; };
 		46D03CC921222CA000F09E2B /* Lighthouse-night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46D03CC821222CA000F09E2B /* Lighthouse-night.jpg */; };
+		46D03CCC212239CC00F09E2B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D03CCB212239CC00F09E2B /* SecondViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		46D03CC421222C7C00F09E2B /* Lighthouse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Lighthouse.jpg; sourceTree = "<group>"; };
 		46D03CC621222C8F00F09E2B /* Lighthouse-in-Field.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lighthouse-in-Field.jpg"; sourceTree = "<group>"; };
 		46D03CC821222CA000F09E2B /* Lighthouse-night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lighthouse-night.jpg"; sourceTree = "<group>"; };
+		46D03CCA212239CC00F09E2B /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		46D03CCB212239CC00F09E2B /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				46D03CB121222BAC00F09E2B /* ViewController.h */,
 				46D03CB221222BAC00F09E2B /* ViewController.m */,
 				46D03CB421222BAC00F09E2B /* Main.storyboard */,
+				46D03CCA212239CC00F09E2B /* SecondViewController.h */,
+				46D03CCB212239CC00F09E2B /* SecondViewController.m */,
 				46D03CC621222C8F00F09E2B /* Lighthouse-in-Field.jpg */,
 				46D03CC821222CA000F09E2B /* Lighthouse-night.jpg */,
 				46D03CC421222C7C00F09E2B /* Lighthouse.jpg */,
@@ -153,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D03CCC212239CC00F09E2B /* SecondViewController.m in Sources */,
 				46D03CB321222BAC00F09E2B /* ViewController.m in Sources */,
 				46D03CBE21222BAD00F09E2B /* main.m in Sources */,
 				46D03CB021222BAC00F09E2B /* AppDelegate.m in Sources */,
