@@ -7,9 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "detailViewController.h"
 
 @interface ViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic) UIPageControl *pageControl;
+@property (nonatomic) NSMutableArray <UIImage*> *imageViews;
+
+
 
 @end
 
@@ -17,6 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIScrollView *sv = [[UIScrollView alloc] init];
+    sv.delegate = self;
+    [self.view addSubview:sv];
+    self.scrollView = sv;
+    self.scrollView.pagingEnabled = YES;
     
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.scrollView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active =YES;
@@ -27,6 +37,8 @@
     UIImageView *imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Lighthouse.jpg"]];
     UIImageView *imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Lighthouse-night.jpg"]];
     UIImageView *imageView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Lighthouse-in-Field.jpg"]];
+    
+    _imageViews = [@[[UIImage imageNamed:@"Lighthouse.jpg"],[UIImage imageNamed:@"Lighthouse-night.jpg"],[UIImage imageNamed:@"Lighthouse-in-Field.jpg"]] mutableCopy];
     
     imageView1.contentMode = UIViewContentModeScaleAspectFill;
     imageView1.clipsToBounds = YES;
@@ -62,15 +74,46 @@
     [imageView3.heightAnchor constraintEqualToAnchor:imageView2.heightAnchor].active = YES;
     [imageView3.widthAnchor constraintEqualToAnchor:imageView2.widthAnchor].active = YES;
     
+    UIPageControl *pageView = [[UIPageControl alloc] initWithFrame:CGRectZero];
+    pageView.currentPage =0;
+    pageView.numberOfPages = 3;
+    [self.view addSubview:pageView];
+    pageView.layer.zPosition = 100;
+    pageView.currentPageIndicatorTintColor = [UIColor redColor];
+    pageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.pageControl = pageView;
+    
+    [NSLayoutConstraint constraintWithItem:pageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50].active = YES;
+    [NSLayoutConstraint constraintWithItem:pageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50].active = YES;
+    [NSLayoutConstraint constraintWithItem:pageView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:pageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0].active = YES;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped)];
+    [self.scrollView addGestureRecognizer:tapGesture];
     
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)screenTapped{
+    int index = self.scrollView.contentOffset.x / self.scrollView.frame.size.width ;
+    UIImage *imageView = self.imageViews[index];
+    [self performSegueWithIdentifier:@"detailView" sender:imageView];
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIImage*)image{
+    if([segue.identifier isEqualToString:@"detailView"]){
+        detailViewController *vc = [segue destinationViewController];
+        UIImage *sendImage = image;
+        vc.image = sendImage;
+    }
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    int index = self.scrollView.contentOffset.x / self.scrollView.frame.size.width ;
+    self.pageControl.currentPage = index;
+}
+
 
 
 @end

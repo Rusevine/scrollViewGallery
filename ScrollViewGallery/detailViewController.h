@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface detailViewController : UIViewController
+
+
+@property (nonatomic) UIImage *image;
 
 @end
